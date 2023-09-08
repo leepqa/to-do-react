@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // import { StyledBtn,StyledList } from "./components/styled";
-import { TaskList } from "./components/TaskList";
+import { TaskList } from "/components/TaskList";
 
 const TASKS_STORAGE = "tasks";
 
