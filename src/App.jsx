@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-// import { StyledBtn,StyledList } from "./components/styled";
-import { TaskList } from "/components/TaskList";
+import { StyledInput, StyledBtnAdd, StyledTitle, StyledContainer } from "./components/styled";
+import { StyledBtnFilters } from "./components/styled";
+import { TaskList } from "./components/TaskList";
+
 
 const TASKS_STORAGE = "tasks";
 
@@ -82,14 +84,15 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <button onClick={() => setFilter(null)}>All</button>
-        <button onClick={() => setFilter(true)}>Complete</button>
-        <button onClick={() => setFilter(false)}>Pending</button>
-      </header>
-      <input id="newTask"></input>
-      <button onClick={addBtn}>Добавить</button>
+    <StyledContainer>
+      <StyledTitle>Todo List</StyledTitle>
+      <StyledInput id="newTask"></StyledInput>
+      <StyledBtnAdd onClick={addBtn}>Add</StyledBtnAdd>
+      <div>
+        <StyledBtnFilters onClick={() => setFilter(null)}>All</StyledBtnFilters>
+        <StyledBtnFilters onClick={() => setFilter(true)}>Complete</StyledBtnFilters>
+        <StyledBtnFilters onClick={() => setFilter(false)}>Pending</StyledBtnFilters>
+      </div>
       <TaskList
         array={filterTasks}
         delBtn={delBtn}
@@ -97,7 +100,7 @@ function App() {
         changeBtn={changeBtn}
         saveBtn={saveBtn}
       ></TaskList>
-    </div>
+    </StyledContainer>
   );
 }
 

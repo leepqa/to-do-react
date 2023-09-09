@@ -1,5 +1,5 @@
 import { TaskEditor } from "./TaskEditor";
-import { StyledBtn,StyledList } from "./styled";
+import { StyledBtnChange,StyledList, StyledBtnDelete} from "./styled";
 
 export function TaskList(props) {
     return (
@@ -11,9 +11,11 @@ export function TaskList(props) {
               onChange={props.checkBtn(task.id)}
               type="checkbox"
             />
-            <StyledBtn onClick={props.changeBtn(task.id)}>Change</StyledBtn>
-            <StyledBtn onClick={props.delBtn(task.id)}>Delete</StyledBtn>
             <TaskEditor task={task} saveBtn={props.saveBtn}></TaskEditor>
+            <div>
+            <StyledBtnChange onClick={props.changeBtn(task.id)}>Change</StyledBtnChange>
+            <StyledBtnDelete onClick={props.delBtn(task.id)}>Delete</StyledBtnDelete>
+            </div>
           </li>
         ))}
       </StyledList>

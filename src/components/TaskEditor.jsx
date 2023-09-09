@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { StyledBtnSave, StyledInput } from "./styled";
 
 
 export function TaskEditor(props) {
@@ -9,14 +9,14 @@ export function TaskEditor(props) {
       <>
         {props.task.editing ? (
           <>
-            <input
+            <StyledInput
               onChange={(e) => setText(e.target.value)}
               type={"text"}
               value={text}
-            ></input>
-            <button onClick={() => props.saveBtn(props.task.id, text)}>
+            ></StyledInput>
+            <StyledBtnSave onClick={() => props.saveBtn(props.task.id, text)}>
               Save
-            </button>
+            </StyledBtnSave>
           </>
         ) : (
           text
