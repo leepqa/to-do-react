@@ -10,7 +10,6 @@ flex-direction: column;
 `
 
 export const StyledTitle = styled.h1`
-//color: #5BCAFF;
 color: #00796B;
 font-size: 2.5em;
 font-family: Roboto;
@@ -19,7 +18,6 @@ font-family: Roboto;
 export const StyledInput = styled.input`
 box-sizing: border-box;
 width: 30em;
-//background: linear-gradient(#55EFCB 0%, #5BCAFF 100%);
 background: #607D8B;
 color: white;
 font-size: 1em;
@@ -44,7 +42,6 @@ font-size: 20px;
 
 export const StyledBtn = styled.button`
 color: White;
-//background: #BF4F74;
 background: #00796B;
 font-size: 1em;
 margin: 0.15em;
@@ -58,7 +55,6 @@ font-family: Roboto;
 `
 export const StyledBtnAdd = styled.button`
 color: White;
-//background: #5BCAFF;
 background:#00796B;
 font-size: 1em;
 margin: 1em;
@@ -73,7 +69,6 @@ font-family: Roboto;
 `
 export const StyledBtnChange = styled.button`
 color: White;
-//background: #5BCAFF;
 background: #00796B;
 font-size: 1em;
 margin: 1em;
@@ -88,7 +83,6 @@ font-family: Roboto;
 
 export const StyledBtnDelete = styled.button`
 color: White;
-//background: #55EFCB;
 background: #610303;
 font-size: 1em;
 margin: 1em;
@@ -102,7 +96,6 @@ font-family: Roboto;
 `
 export const StyledBtnSave = styled.button`
 color: White;
-//background: #5BCAFF;
 background: #00796B;
 font-size: 1em;
 margin: 1em;
@@ -116,7 +109,6 @@ font-family: Roboto;
 `
 export const StyledBtnFilters = styled.button`
 color: White;
-//background: linear-gradient(to top, #55EFCB 0%, #5BCAFF 100%);
 background: #607D8B;
 font-size: 1em;
 margin: 0.25em;

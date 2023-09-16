@@ -4,55 +4,64 @@ import { StyledBtnFilters } from "./components/styled";
 import { TaskList } from "./components/TaskList";
 
 
-const TASKS_STORAGE = "tasks";
 
+
+const TASK_KEY = "tasks";
+
+function generateId() {
+  return Math.floor(Math.random() * 1000000);
+}
 
 
 
 function App() {
-  const [tasks, setTasksState] = useState([]);
+  const [tasks, setTasks] = useState([]);
+
   const [filter, setFilter] = useState(null);
-  const filterTasks = tasks.filter((task) => {
+
+  const filteredTasks = tasks.filter((task) => {
     if (filter === true) return task.done;
     if (filter === false) return !task.done;
     return true;
   });
 
-  const setTasks = (tasks) => {
+  const setTask = (tasks) => {
     const stringifyTask = JSON.stringify(tasks);
-    localStorage.setItem(TASKS_STORAGE, stringifyTask);
-    setTasksState(tasks);
+    localStorage.setItem(TASK_KEY, stringifyTask);
+    setTasks(tasks);
   };
+  
 
   useEffect(() => {
-    let tasks = localStorage.getItem(TASKS_STORAGE);
+    let tasks = localStorage.getItem(TASK_KEY);
     if (tasks == null) return;
     tasks = JSON.parse(tasks);
-    setTasks(tasks);
+    setTask(tasks);
   }, []);
 
-  const changeBtn = (id) => () => {
-    let editing = tasks.map((task) => {
+  const handleChangeTask = (id) => () => {
+    let editedTasks = tasks.map((task) => {
       if (id === task.id) {
-        task.editing = true;
+        task.editedTasks = true;
       }
       return task;
     });
-    setTasks(editing);
+    setTask(editedTasks);
   };
 
-  const delBtn = (id) => () => {
-    let updated = tasks.filter((task) => task.id !== id);
-    setTasks(updated);
+  const handelDeleteTask = (id) => () => {
+    let updatedTasks = tasks.filter((task) => task.id !== id);
+    setTask(updatedTasks);
   };
-  const checkBtn = (id) => () => {
-    let checkdone = tasks.map((task) => {
+
+  const handelCheckTask = (id) => () => {
+    let checkTasks = tasks.map((task) => {
       if (id === task.id) {
         task.done = !task.done;
       }
       return task;
     });
-    setTasks(checkdone);
+    setTask(checkTasks);
   };
 
   const addBtn = () => {
@@ -60,28 +69,25 @@ function App() {
     if (input.value === "") return;
     let newTask = {
       text: input.value,
-      id: generateID(),
+      id: generateId(),
       done: false,
       editing: false,
     };
-    setTasks([...tasks, newTask]);
+    setTask([...tasks, newTask]);
     input.value = "";
   };
 
   const saveBtn = (id, text) => {
-    let saveBtn = tasks.map((task) => {
+    let saveChanges = tasks.map((task) => {
       if (id === task.id && text.length > 0) {
-        task.editing = false;
+        task.editedTasks = false;
         task.text = text;
       }
       return task;
     });
-    setTasks(saveBtn);
+    setTask(saveChanges);
   };
 
-  function generateID() {
-    return Math.floor(Math.random() * 1000000);
-  }
 
   return (
     <StyledContainer>
@@ -94,10 +100,10 @@ function App() {
         <StyledBtnFilters onClick={() => setFilter(false)}>Pending</StyledBtnFilters>
       </div>
       <TaskList
-        array={filterTasks}
-        delBtn={delBtn}
-        checkBtn={checkBtn}
-        changeBtn={changeBtn}
+        taskArray={filteredTasks}
+        delBtn={handelDeleteTask}
+        checkBtn={handelCheckTask}
+        changeBtn={handleChangeTask}
         saveBtn={saveBtn}
       ></TaskList>
     </StyledContainer>
